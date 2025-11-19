@@ -1,0 +1,20 @@
+{
+  "name": "Projeto Back",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "ms-azuretools.vscode-containers",
+        "vscjava.vscode-java-pack",
+        "redhat.vscode-quarkus",
+        "cweijan.vscode-mysql-client2"
+      ]
+    }
+  },
+  "forwardPorts": [],
+  "postCreateCommand": "",
+  "postStartCommand": "service mysql start"
+}
