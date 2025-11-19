@@ -36,4 +36,13 @@ public class ProgressoRecurso {
             progresso.delete();
         }
     }
+    
+    @PUT 
+    @Transactional
+    @Path ({"id"})
+    public void editar (@PathParam("id") Integer id, Progresso progresso){
+        Progresso progressoExistente = Progresso.findById(id);
+        if(progressoExistente != null){
+            progressoExistente.aluno = progresso.aluno;
+            progressoExistente.disciplina = progresso.disciplina;
 }

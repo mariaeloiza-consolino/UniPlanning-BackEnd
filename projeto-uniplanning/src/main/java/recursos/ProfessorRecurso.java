@@ -2,6 +2,7 @@ package recursos;
 
 import java.util.List;
 
+
 import Entidades.Professor;
 import io.quarkus.panache.common.Sort;
 import jakarta.transaction.Transactional;
@@ -35,5 +36,18 @@ public class ProfessorRecurso {
         if (professor !=null){
             professor.delete();
         }
+    }
+
+    @PUT 
+    @Transactional
+    @Path ({"id"})
+    public void editar (@PathParam("id") Integer id, Professor professor){
+        Professor professorExistente = Professor.findById(id);
+        if(professorExistente != null){
+            professorExistente.cpf = professor.cpf;
+            professorExistente.email = professor.email;
+            professorExistente.nome = professor.nome;
+            professorExistente.senha = professor.senha;
+}
     }
 }

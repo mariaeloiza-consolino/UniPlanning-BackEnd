@@ -2,6 +2,7 @@ package recursos;
 
 import java.util.List;
 
+
 import Entidades.Disciplina;
 import io.quarkus.panache.common.Sort;
 import jakarta.transaction.Transactional;
@@ -36,4 +37,13 @@ public class DisciplinaRecurso {
             disciplina.delete();
         }
     }
+
+    @PUT 
+    @Transactional
+    @Path ({"id"})
+    public void editar (@PathParam("id") Integer id, Disciplina disciplina){
+        Disciplina disciplinaExistente = Disciplina.findById(id);
+        if(disciplinaExistente != null){
+            disciplinaExistente.nome = disciplina.nome;
+            disciplinaExistente.professor = disciplina.professor;
 }

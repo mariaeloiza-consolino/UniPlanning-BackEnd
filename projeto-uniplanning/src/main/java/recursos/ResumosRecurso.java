@@ -37,4 +37,13 @@ public class ResumosRecurso {
             resumos.delete();
         }
     }
+
+    @PUT 
+    @Transactional
+    @Path ({"id"})
+    public void editar (@PathParam("id") Integer id, Resumos resumos){
+        Resumos resumosExistente = Resumos.findById(id);
+        if(resumosExistente != null){
+            resumosExistente.aluno = resumos.aluno;
+            resumosExistente.nome = resumos.nome;
 }

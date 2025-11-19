@@ -36,4 +36,15 @@ public class VideoAulasRecurso {
             videoAulas.delete();
         }
     }
+
+    @PUT 
+    @Transactional
+    @Path ({"id"})
+    public void editar (@PathParam("id") Integer id, VideoAulas videoAulas){
+        VideoAulas videoAulasExistente = VideoAulas.findById(id);
+        if(videoAulasExistente != null){
+            videoAulasExistente.curso = videoAulas.curso;
+            videoAulasExistente.professor = videoAulas.professor;
+            videoAulasExistente.titulo = videoAulas.titulo;
+            videoAulasExistente.turma = videoAulas.turma;
 }

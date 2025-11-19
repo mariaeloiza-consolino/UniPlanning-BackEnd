@@ -2,6 +2,7 @@ package recursos;
 
 import java.util.List;
 
+import Entidades.Curso;
 import Entidades.Planner;
 import io.quarkus.panache.common.Sort;
 import jakarta.transaction.Transactional;
@@ -36,4 +37,15 @@ public class PlannerRecurso {
             planner.delete();
         }
     }
+
+    @PUT 
+    @Transactional
+    @Path ({"id"})
+    public void editar (@PathParam("id") Integer id, Planner planner){
+        Planner plannerExistente = Planner.findById(id);
+        if(plannerExistente != null){
+            plannerExistente.agenda = planner.agenda;
+            plannerExistente.aluno = planner.aluno;
+            plannerExistente.prioridades = planner.prioridades;
+            plannerExistente.tarefas = planner.tarefas;
 }

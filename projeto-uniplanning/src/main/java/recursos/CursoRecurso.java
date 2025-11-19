@@ -35,4 +35,14 @@ public class CursoRecurso {
             curso.delete();
         }
     }
+
+    @PUT 
+    @Transactional
+    @Path ({"id"})
+    public void editar (@PathParam("id") Integer id, Curso curso){
+        Curso cursoExistente = Curso.findById(id);
+        if(cursoExistente != null){
+            cursoExistente.disciplina = curso.disciplina;
+            cursoExistente.nome = curso.nome;
+            cursoExistente.turma = curso.turma;
 }

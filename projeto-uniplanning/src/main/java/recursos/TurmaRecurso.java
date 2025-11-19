@@ -2,7 +2,6 @@ package recursos;
 
 import java.util.List;
 
-
 import Entidades.Turma;
 import io.quarkus.panache.common.Sort;
 import jakarta.transaction.Transactional;
@@ -37,4 +36,12 @@ public class TurmaRecurso {
             turma.delete();
         }
     }
+
+    @PUT 
+    @Transactional
+    @Path ({"id"})
+    public void editar (@PathParam("id") Integer id, Turma turma){
+        Turma turmaExistente = Turma.findById(id);
+        if(turmaExistente != null){
+            turmaExistente.nome = turma.nome;
 }

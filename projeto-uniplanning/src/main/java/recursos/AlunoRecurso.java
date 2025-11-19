@@ -4,6 +4,7 @@ import java.util.List;
 
 import Entidades.Aluno;
 import io.quarkus.panache.common.Sort;
+import jakarta.persistence.PostUpdate;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -34,6 +35,23 @@ public class AlunoRecurso {
         Aluno aluno = Aluno.findById(id);
         if (aluno !=null){
             aluno.delete();
+        }
+    }
+
+    @PUT 
+    @Transactional
+    @Path ({"id"})
+    public void editar (@PathParam("id") Integer id, Aluno aluno){
+        Aluno alunoExistente = Aluno.findById(id);
+        if(alunoExistente != null){
+            alunoExistente.cpf = aluno.cpf;
+            alunoExistente.curso = aluno.curso;
+            alunoExistente.email = aluno.email;
+            alunoExistente.nome = aluno.nome;
+            alunoExistente.senha = aluno.senha;
+            alunoExistente.turma = aluno.turma;
+
+            alunoExistente.persist();
         }
     }
 }
