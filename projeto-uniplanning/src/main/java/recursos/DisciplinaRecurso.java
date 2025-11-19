@@ -2,7 +2,6 @@ package recursos;
 
 import java.util.List;
 
-
 import Entidades.Disciplina;
 import io.quarkus.panache.common.Sort;
 import jakarta.transaction.Transactional;
@@ -16,34 +15,35 @@ import jakarta.ws.rs.PathParam;
 @Path("disciplinas")
 
 public class DisciplinaRecurso {
-    @GET 
-    public List <Disciplina> listar(){
+    @GET
+    public List<Disciplina> listar() {
         return Disciplina.listAll(Sort.ascending("nome"));
     }
-    
 
     @POST
     @Transactional
-    public void salvar (Disciplina disciplina){
+    public void salvar(Disciplina disciplina) {
         disciplina.persist();
     }
-    
-   @DELETE 
-   @Path("{id}")
-   @Transactional 
-    public void excluir(@PathParam ("id") Integer id){
+
+    @DELETE
+    @Path("{id}")
+    @Transactional
+    public void excluir(@PathParam("id") Integer id) {
         Disciplina disciplina = Disciplina.findById(id);
-        if (disciplina !=null){
+        if (disciplina != null) {
             disciplina.delete();
         }
     }
 
-    @PUT 
+    @PUT
     @Transactional
-    @Path ({"id"})
-    public void editar (@PathParam("id") Integer id, Disciplina disciplina){
+    @Path("{id}")
+    public void editar(@PathParam("id") Integer id, Disciplina disciplina) {
         Disciplina disciplinaExistente = Disciplina.findById(id);
-        if(disciplinaExistente != null){
+        if (disciplinaExistente != null) {
             disciplinaExistente.nome = disciplina.nome;
             disciplinaExistente.professor = disciplina.professor;
+        }
+    }
 }

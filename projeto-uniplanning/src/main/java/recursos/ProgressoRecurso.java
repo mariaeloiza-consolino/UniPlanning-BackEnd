@@ -13,7 +13,6 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 
 @Path("progressos")
-
 public class ProgressoRecurso {
     @GET 
     public List <Progresso> listar(){
@@ -39,10 +38,12 @@ public class ProgressoRecurso {
     
     @PUT 
     @Transactional
-    @Path ({"id"})
+    @Path ("{id}")
     public void editar (@PathParam("id") Integer id, Progresso progresso){
         Progresso progressoExistente = Progresso.findById(id);
         if(progressoExistente != null){
             progressoExistente.aluno = progresso.aluno;
             progressoExistente.disciplina = progresso.disciplina;
+        }
+    }
 }

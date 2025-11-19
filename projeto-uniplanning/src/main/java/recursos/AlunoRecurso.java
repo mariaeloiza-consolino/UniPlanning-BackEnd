@@ -16,34 +16,33 @@ import jakarta.ws.rs.PathParam;
 @Path("alunos")
 
 public class AlunoRecurso {
-    @GET 
-    public List <Aluno> listar(){
+    @GET
+    public List<Aluno> listar() {
         return Aluno.listAll(Sort.ascending("nome"));
     }
 
-
     @POST
     @Transactional
-    public void salvar (Aluno aluno){
+    public void salvar(Aluno aluno) {
         aluno.persist();
     }
 
-   @DELETE 
-   @Path("{id}")
-   @Transactional 
-    public void excluir(@PathParam ("id") Integer id){
+    @DELETE
+    @Path("{id}")
+    @Transactional
+    public void excluir(@PathParam("id") Integer id) {
         Aluno aluno = Aluno.findById(id);
-        if (aluno !=null){
+        if (aluno != null) {
             aluno.delete();
         }
     }
 
-    @PUT 
+    @PUT
     @Transactional
-    @Path ({"id"})
-    public void editar (@PathParam("id") Integer id, Aluno aluno){
+    @Path("{id}")
+    public void editar(@PathParam("id") Integer id, Aluno aluno) {
         Aluno alunoExistente = Aluno.findById(id);
-        if(alunoExistente != null){
+        if (alunoExistente != null) {
             alunoExistente.cpf = aluno.cpf;
             alunoExistente.curso = aluno.curso;
             alunoExistente.email = aluno.email;

@@ -16,36 +16,37 @@ import jakarta.ws.rs.PathParam;
 @Path("planners")
 
 public class PlannerRecurso {
-    @GET 
-    public List <Planner> listar(){
+    @GET
+    public List<Planner> listar() {
         return Curso.listAll(Sort.ascending("prioridades"));
     }
-    
 
     @POST
     @Transactional
-    public void salvar (Planner planner){
+    public void salvar(Planner planner) {
         planner.persist();
     }
-    
-   @DELETE 
-   @Path("{id}")
-   @Transactional 
-    public void excluir(@PathParam ("id") Integer id){
+
+    @DELETE
+    @Path("{id}")
+    @Transactional
+    public void excluir(@PathParam("id") Integer id) {
         Planner planner = Planner.findById(id);
-        if (planner !=null){
+        if (planner != null) {
             planner.delete();
         }
     }
 
-    @PUT 
+    @PUT
     @Transactional
-    @Path ({"id"})
-    public void editar (@PathParam("id") Integer id, Planner planner){
+    @Path("{id}")
+    public void editar(@PathParam("id") Integer id, Planner planner) {
         Planner plannerExistente = Planner.findById(id);
-        if(plannerExistente != null){
+        if (plannerExistente != null) {
             plannerExistente.agenda = planner.agenda;
             plannerExistente.aluno = planner.aluno;
             plannerExistente.prioridades = planner.prioridades;
             plannerExistente.tarefas = planner.tarefas;
+        }
+    }
 }

@@ -15,33 +15,34 @@ import jakarta.ws.rs.PathParam;
 @Path("turmas")
 
 public class TurmaRecurso {
-    @GET 
-    public List <Turma> listar(){
+    @GET
+    public List<Turma> listar() {
         return Turma.listAll(Sort.ascending("nome"));
     }
-    
 
     @POST
     @Transactional
-    public void salvar (Turma turma){
+    public void salvar(Turma turma) {
         turma.persist();
     }
 
-    @DELETE 
+    @DELETE
     @Path("{id}")
-    @Transactional 
-    public void excluir(@PathParam ("id") Integer id){
+    @Transactional
+    public void excluir(@PathParam("id") Integer id) {
         Turma turma = Turma.findById(id);
-        if (turma !=null){
+        if (turma != null) {
             turma.delete();
         }
     }
 
-    @PUT 
+    @PUT
     @Transactional
-    @Path ({"id"})
-    public void editar (@PathParam("id") Integer id, Turma turma){
+    @Path("{id}")
+    public void editar(@PathParam("id") Integer id, Turma turma) {
         Turma turmaExistente = Turma.findById(id);
-        if(turmaExistente != null){
+        if (turmaExistente != null) {
             turmaExistente.nome = turma.nome;
+        }
+    }
 }

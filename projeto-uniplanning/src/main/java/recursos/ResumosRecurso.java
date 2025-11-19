@@ -40,10 +40,12 @@ public class ResumosRecurso {
 
     @PUT 
     @Transactional
-    @Path ({"id"})
+    @Path ("{id}")
     public void editar (@PathParam("id") Integer id, Resumos resumos){
         Resumos resumosExistente = Resumos.findById(id);
         if(resumosExistente != null){
             resumosExistente.aluno = resumos.aluno;
             resumosExistente.nome = resumos.nome;
+        }   
+    }
 }

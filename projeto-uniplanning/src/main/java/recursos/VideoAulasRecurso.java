@@ -15,36 +15,37 @@ import jakarta.ws.rs.PathParam;
 @Path("videoAulas")
 
 public class VideoAulasRecurso {
-    @GET 
-    public List <VideoAulas> listar(){
+    @GET
+    public List<VideoAulas> listar() {
         return VideoAulas.listAll(Sort.ascending("titulo"));
     }
-    
 
     @POST
     @Transactional
-    public void salvar (VideoAulas videoAulas){
+    public void salvar(VideoAulas videoAulas) {
         videoAulas.persist();
     }
 
-    @DELETE 
+    @DELETE
     @Path("{id}")
-    @Transactional 
-    public void excluir(@PathParam ("id") Integer id){
+    @Transactional
+    public void excluir(@PathParam("id") Integer id) {
         VideoAulas videoAulas = VideoAulas.findById(id);
-        if (videoAulas !=null){
+        if (videoAulas != null) {
             videoAulas.delete();
         }
     }
 
-    @PUT 
+    @PUT
     @Transactional
-    @Path ({"id"})
-    public void editar (@PathParam("id") Integer id, VideoAulas videoAulas){
+    @Path("{id}")
+    public void editar(@PathParam("id") Integer id, VideoAulas videoAulas) {
         VideoAulas videoAulasExistente = VideoAulas.findById(id);
-        if(videoAulasExistente != null){
+        if (videoAulasExistente != null) {
             videoAulasExistente.curso = videoAulas.curso;
             videoAulasExistente.professor = videoAulas.professor;
             videoAulasExistente.titulo = videoAulas.titulo;
             videoAulasExistente.turma = videoAulas.turma;
+        }
+    }
 }
