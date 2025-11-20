@@ -2,7 +2,6 @@ package recursos;
 
 import java.util.List;
 
-import Entidades.Curso;
 import Entidades.Planner;
 import io.quarkus.panache.common.Sort;
 import jakarta.transaction.Transactional;
@@ -18,7 +17,7 @@ import jakarta.ws.rs.PathParam;
 public class PlannerRecurso {
     @GET
     public List<Planner> listar() {
-        return Curso.listAll(Sort.ascending("prioridades"));
+        return Planner.listAll(Sort.ascending("prioridades"));
     }
 
     @POST
